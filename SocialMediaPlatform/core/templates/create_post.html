@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="form-box">
+
+<h2>Create New Post</h2>
+
+<form method="POST" enctype="multipart/form-data">
+
+{% csrf_token %}
+
+{{ form.as_p }}
+
+<button class="btn">Post</button>
+
+</form>
+
+</div>
+
+{% endblock %}

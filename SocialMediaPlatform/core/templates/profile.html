@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="profile-card">
+
+    <img src="{{ profile.profile_image.url }}" class="profile-img">
+
+    <h2>{{ profile_user.username }}</h2>
+
+    <p>
+    <strong>{{ followers }}</strong> Followers |
+    <strong>{{ following }}</strong> Following
+</p>
+
+{% if request.user != profile_user %}
+
+    {% if is_following %}
+
+        <a href="{% url 'unfollow_user' profile_user.username %}" class="btn">
+            Unfollow
+        </a>
+
+    {% else %}
+
+        <a href="{% url 'follow_user' profile_user.username %}" class="btn">
+            Follow
+        </a>
+
+    {% endif %}
+
+{% endif %}
+
+<p>{{ profile.bio }}</p>
+
+    <p>📍 {{ profile.location }}</p>
+
+    {% if profile.website %}
+    <p>
+        🌐
+        <a href="{{ profile.website }}" target="_blank">
+            {{ profile.website }}
+        </a>
+    </p>
+    {% endif %}
+
+    <p><strong>{{ posts.count }}</strong> Posts</p>
+
+    {% if request.user == profile_user %}
+        <a href="{% url 'edit_profile' %}" class="btn">
+            Edit Profile
+        </a>
+    {% endif %}
+
+</div>
+
+<hr>
+
+{% for post in posts %}
+
+<div class="post-card">
+
+    <img src="{{ post.image.url }}">
+
+    <p>{{ post.caption }}</p>
+
+</div>
+
+{% empty %}
+
+<h3>No posts yet.</h3>
+
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="form-box">
+
+<h2>Delete Post</h2>
+
+<p>Are you sure you want to delete this post?</p>
+
+<form method="POST">
+
+{% csrf_token %}
+
+<button class="btn">
+Delete
+</button>
+
+<a href="{% url 'home' %}" class="btn">
+Cancel
+</a>
+
+</form>
+
+</div>
+
+{% endblock %}
