@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Orders</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#667eea,#764ba2);
+    min-height:100vh;
+    padding:30px;
+}
+
+.header{
+    text-align:center;
+    color:white;
+    margin-bottom:30px;
+}
+
+.header h1{
+    font-size:45px;
+}
+
+.header p{
+    margin-top:10px;
+    font-size:18px;
+}
+
+/* Orders Container */
+
+.orders-container{
+    max-width:1000px;
+    margin:auto;
+}
+
+.card{
+    background:white;
+    border-radius:20px;
+    padding:25px;
+    margin-bottom:25px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.order-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    margin-bottom:15px;
+}
+
+.order-id{
+    font-size:22px;
+    font-weight:bold;
+    color:#333;
+}
+
+.price{
+    color:#28a745;
+    font-size:26px;
+    font-weight:bold;
+}
+
+.details{
+    margin-top:15px;
+    color:#555;
+    line-height:1.8;
+    font-size:17px;
+}
+
+/* Status Badges */
+
+.status{
+    padding:8px 18px;
+    border-radius:30px;
+    color:white;
+    font-weight:bold;
+    display:inline-block;
+    margin-top:15px;
+}
+
+.Pending{
+    background:#ff9800;
+}
+
+.Processing{
+    background:#2196f3;
+}
+
+.Shipped{
+    background:#9c27b0;
+}
+
+.Delivered{
+    background:#28a745;
+}
+
+.Cancelled{
+    background:#f44336;
+}
+
+/* Timeline */
+
+.timeline{
+    margin-top:20px;
+    display:flex;
+    justify-content:space-between;
+    text-align:center;
+}
+
+.step{
+    flex:1;
+}
+
+.circle{
+    width:35px;
+    height:35px;
+    background:#ddd;
+    border-radius:50%;
+    margin:auto;
+    line-height:35px;
+    color:white;
+    font-weight:bold;
+}
+
+.active{
+    background:#28a745;
+}
+
+.step p{
+    margin-top:8px;
+    font-size:14px;
+}
+
+/* Empty Orders */
+
+.empty{
+    background:white;
+    padding:70px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+
+.empty h2{
+    color:#555;
+}
+
+.shop-btn{
+    display:inline-block;
+    margin-top:20px;
+    text-decoration:none;
+    background:#2874f0;
+    color:white;
+    padding:14px 25px;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+.timeline{
+    flex-direction:column;
+    gap:15px;
+}
+
+.order-top{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:10px;
+}
+
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="header">
+
+    <h1>📦 My Orders</h1>
+
+    <p>
+        Track all your purchases in one place
+    </p>
+
+</div>
+
+<div class="orders-container">
+
+{% for order in orders %}
+
+<div class="card">
+
+    <div class="order-top">
+
+        <div class="order-id">
+            Order #{{ order.id }}
+        </div>
+
+        <div class="price">
+            ₹{{ order.price }}
+        </div>
+
+    </div>
+
+    <div class="details">
+
+        <p>
+            🛍 Product:
+            <strong>{{ order.product_name }}</strong>
+        </p>
+
+        <p>
+            📦 Quantity:
+            {{ order.quantity }}
+        </p>
+
+        <p>
+            📅 Ordered On:
+            {{ order.ordered_at }}
+        </p>
+
+    </div>
+
+    <span class="status {{ order.status }}">
+        {{ order.status }}
+    </span>
+
+    <div class="timeline">
+
+        <div class="step">
+            <div class="circle active">✓</div>
+            <p>Ordered</p>
+        </div>
+
+        <div class="step">
+            <div class="circle active">✓</div>
+            <p>Packed</p>
+        </div>
+
+        <div class="step">
+            <div class="circle active">✓</div>
+            <p>Shipped</p>
+        </div>
+
+        <div class="step">
+            <div class="circle active">✓</div>
+            <p>Delivered</p>
+        </div>
+
+    </div>
+
+</div>
+
+{% empty %}
+
+<div class="empty">
+
+    <h2>😔 No Orders Found</h2>
+
+    <p style="margin-top:10px;">
+        Start shopping to see your orders here.
+    </p>
+
+    <a href="/" class="shop-btn">
+        🛒 Shop Now
+    </a>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</body>
+</html>

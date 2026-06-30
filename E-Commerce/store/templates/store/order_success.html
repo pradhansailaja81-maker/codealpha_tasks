@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Order Success</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#667eea,#764ba2);
+    padding:20px;
+}
+
+.success-card{
+    background:white;
+    width:100%;
+    max-width:700px;
+    border-radius:30px;
+    padding:50px;
+    text-align:center;
+    box-shadow:0 20px 50px rgba(0,0,0,0.25);
+    animation:popup 0.6s ease;
+}
+
+@keyframes popup{
+    from{
+        transform:scale(0.8);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+.success-icon{
+    width:130px;
+    height:130px;
+    background:#28a745;
+    color:white;
+    border-radius:50%;
+    margin:auto;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:70px;
+    box-shadow:0 10px 25px rgba(40,167,69,0.4);
+}
+
+h1{
+    color:#28a745;
+    margin-top:25px;
+    font-size:38px;
+}
+
+.message{
+    color:#666;
+    font-size:18px;
+    margin-top:15px;
+    line-height:1.8;
+}
+
+.order-box{
+    margin-top:30px;
+    background:#f8f9fa;
+    padding:20px;
+    border-radius:15px;
+}
+
+.order-box h3{
+    color:#333;
+    margin-bottom:10px;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:30px;
+    text-decoration:none;
+    background:linear-gradient(45deg,#ff6b00,#ff9800);
+    color:white;
+    padding:15px 30px;
+    border-radius:12px;
+    font-size:18px;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.btn:hover{
+    transform:translateY(-4px);
+    box-shadow:0 10px 20px rgba(255,152,0,0.3);
+}
+
+.footer{
+    margin-top:25px;
+    color:#888;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="success-card">
+
+    <div class="success-icon">
+        ✓
+    </div>
+
+    <h1>Order Placed Successfully!</h1>
+
+    <p class="message">
+        🎉 Thank you for shopping with us.<br>
+        Your order has been confirmed and will be processed soon.
+    </p>
+
+    <div class="order-box">
+
+        <h3>📦 Order Status</h3>
+
+        <p>
+            Your order is currently being prepared for shipment.
+        </p>
+
+        <br>
+
+        <p>
+            🚚 Expected Delivery: 3 - 7 Working Days
+        </p>
+
+    </div>
+
+    <a href="/" class="btn">
+        🛒 Continue Shopping
+    </a>
+
+    <div class="footer">
+        Thank you for choosing ShopEasy ❤️
+    </div>
+
+</div>
+
+</body>
+</html>

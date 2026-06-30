@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Delivery Address</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#667eea,#764ba2);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.container{
+    width:100%;
+    max-width:650px;
+    background:white;
+    border-radius:25px;
+    overflow:hidden;
+    box-shadow:0 20px 40px rgba(0,0,0,0.2);
+}
+
+.header{
+    background:linear-gradient(45deg,#2874f0,#0d47a1);
+    color:white;
+    text-align:center;
+    padding:30px;
+}
+
+.header h1{
+    font-size:32px;
+}
+
+.header p{
+    margin-top:10px;
+    opacity:0.9;
+}
+
+.form-container{
+    padding:35px;
+}
+
+.row{
+    display:flex;
+    gap:15px;
+}
+
+.form-group{
+    margin-bottom:20px;
+    flex:1;
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:600;
+    color:#333;
+}
+
+input,
+textarea{
+    width:100%;
+    padding:14px;
+    border:2px solid #e0e0e0;
+    border-radius:12px;
+    font-size:15px;
+    transition:0.3s;
+}
+
+input:focus,
+textarea:focus{
+    outline:none;
+    border-color:#2874f0;
+    box-shadow:0 0 15px rgba(40,116,240,0.2);
+}
+
+textarea{
+    height:120px;
+    resize:none;
+}
+
+.info-box{
+    background:#f5f9ff;
+    border-left:5px solid #2874f0;
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:25px;
+}
+
+.info-box p{
+    color:#555;
+}
+
+.btn{
+    width:100%;
+    padding:16px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(45deg,#ff6b00,#ff9800);
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 20px rgba(255,152,0,0.3);
+}
+
+.secure{
+    text-align:center;
+    margin-top:20px;
+    color:#777;
+    font-size:14px;
+}
+
+@media(max-width:600px){
+
+.row{
+    flex-direction:column;
+}
+
+.header h1{
+    font-size:26px;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>📍 Delivery Address</h1>
+        <p>Please enter your shipping details</p>
+    </div>
+
+    <div class="form-container">
+
+        <div class="info-box">
+            <p>🚚 Fast Delivery Available | 🔒 Secure Checkout | 💳 Safe Payments</p>
+        </div>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text"
+                       name="full_name"
+                       placeholder="Enter your full name"
+                       required>
+            </div>
+
+            <div class="row">
+
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="text"
+                           name="phone"
+                           placeholder="9876543210"
+                           required>
+                </div>
+
+                <div class="form-group">
+                    <label>Pincode</label>
+                    <input type="text"
+                           name="pincode"
+                           placeholder="751001"
+                           required>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label>Full Address</label>
+                <textarea name="address"
+                          placeholder="House No, Street, Area"
+                          required></textarea>
+            </div>
+
+            <div class="row">
+
+                <div class="form-group">
+                    <label>City</label>
+                    <input type="text"
+                           name="city"
+                           placeholder="Bhubaneswar"
+                           required>
+                </div>
+
+                <div class="form-group">
+                    <label>State</label>
+                    <input type="text"
+                           name="state"
+                           placeholder="Odisha"
+                           required>
+                </div>
+
+            </div>
+
+            <button type="submit" class="btn">
+                Continue To Payment 💳
+            </button>
+
+        </form>
+
+        <div class="secure">
+            🔐 Your information is secure and encrypted
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

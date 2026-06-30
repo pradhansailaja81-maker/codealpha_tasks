@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Dashboard</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#1e3c72,#2a5298);
+    min-height:100vh;
+    padding:30px;
+}
+
+/* Header */
+
+.header{
+    text-align:center;
+    color:white;
+    margin-bottom:40px;
+}
+
+.header h1{
+    font-size:50px;
+}
+
+.header p{
+    margin-top:10px;
+    font-size:18px;
+}
+
+/* Dashboard Cards */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+    max-width:1200px;
+    margin:auto;
+}
+
+.card{
+    background:white;
+    border-radius:20px;
+    padding:30px;
+    text-align:center;
+    box-shadow:0 15px 25px rgba(0,0,0,0.15);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+.icon{
+    font-size:50px;
+    margin-bottom:10px;
+}
+
+.card h2{
+    font-size:42px;
+    color:#2a5298;
+}
+
+.card p{
+    color:#666;
+    font-size:18px;
+    margin-top:8px;
+}
+
+/* Revenue Card */
+
+.revenue{
+    margin-top:30px;
+    background:white;
+    border-radius:20px;
+    padding:30px;
+    text-align:center;
+    max-width:1200px;
+    margin-left:auto;
+    margin-right:auto;
+    box-shadow:0 15px 25px rgba(0,0,0,0.15);
+}
+
+.revenue h2{
+    color:#28a745;
+    font-size:40px;
+}
+
+.revenue p{
+    color:#666;
+}
+
+/* Orders Table */
+
+.orders{
+    max-width:1200px;
+    margin:40px auto;
+    background:white;
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 15px 25px rgba(0,0,0,0.15);
+    overflow-x:auto;
+}
+
+.orders h2{
+    margin-bottom:20px;
+    color:#333;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    background:#2a5298;
+    color:white;
+    padding:15px;
+}
+
+td{
+    padding:15px;
+    border-bottom:1px solid #eee;
+}
+
+tr:hover{
+    background:#f8f9ff;
+}
+
+/* Status */
+
+.status{
+    padding:8px 15px;
+    border-radius:20px;
+    color:white;
+    font-weight:bold;
+}
+
+.pending{
+    background:#ff9800;
+}
+
+.shipped{
+    background:#2196f3;
+}
+
+.delivered{
+    background:#28a745;
+}
+
+/* Footer */
+
+.footer{
+    text-align:center;
+    color:white;
+    margin-top:30px;
+    font-size:16px;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="header">
+
+    <h1>📊 Admin Dashboard</h1>
+
+    <p>
+        Manage Products, Orders & Customers
+    </p>
+
+</div>
+
+<div class="cards">
+
+    <div class="card">
+        <div class="icon">📦</div>
+        <h2>{{ total_products }}</h2>
+        <p>Total Products</p>
+    </div>
+
+    <div class="card">
+        <div class="icon">🛒</div>
+        <h2>{{ total_orders }}</h2>
+        <p>Total Orders</p>
+    </div>
+
+    <div class="card">
+        <div class="icon">👥</div>
+        <h2>{{ total_users }}</h2>
+        <p>Total Users</p>
+    </div>
+
+</div>
+
+<div class="revenue">
+
+    <h2>💰 Revenue</h2>
+
+    <p>Total Sales Revenue</p>
+
+    <h2>
+        ₹{{ total_revenue }}
+    </h2>
+
+</div>
+
+<div class="orders">
+
+    <h2>📋 Recent Orders</h2>
+
+    <table>
+
+        <tr>
+            <th>Order ID</th>
+            <th>Customer</th>
+            <th>Amount</th>
+            <th>Status</th>
+        </tr>
+
+        {% for order in recent_orders %}
+
+        <tr>
+
+            <td>#{{ order.id }}</td>
+
+            <td>
+                {{ order.user.username }}
+            </td>
+
+            <td>
+                ₹{{ order.total_amount }}
+            </td>
+
+            <td>
+
+                {% if order.status == "Pending" %}
+
+                <span class="status pending">
+                    Pending
+                </span>
+
+                {% elif order.status == "Shipped" %}
+
+                <span class="status shipped">
+                    Shipped
+                </span>
+
+                {% else %}
+
+                <span class="status delivered">
+                    Delivered
+                </span>
+
+                {% endif %}
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</div>
+
+<div class="footer">
+    🚀 ShopEasy Admin Panel
+</div>
+
+</body>
+</html>

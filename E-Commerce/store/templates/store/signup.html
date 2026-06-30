@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Account</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:'Segoe UI',sans-serif;
+    }
+
+    body{
+        min-height:100vh;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        background:linear-gradient(135deg,#667eea,#764ba2);
+        padding:20px;
+    }
+
+    .container{
+        width:100%;
+        max-width:450px;
+        background:rgba(255,255,255,0.95);
+        backdrop-filter:blur(15px);
+        border-radius:25px;
+        padding:40px;
+        box-shadow:0 15px 40px rgba(0,0,0,0.25);
+        animation:fadeIn 0.8s ease;
+    }
+
+    @keyframes fadeIn{
+        from{
+            opacity:0;
+            transform:translateY(30px);
+        }
+        to{
+            opacity:1;
+            transform:translateY(0);
+        }
+    }
+
+    .logo{
+        text-align:center;
+        font-size:55px;
+        margin-bottom:10px;
+    }
+
+    h2{
+        text-align:center;
+        color:#333;
+        margin-bottom:8px;
+    }
+
+    .subtitle{
+        text-align:center;
+        color:#777;
+        margin-bottom:25px;
+    }
+
+    .message{
+        background:#ffe5e5;
+        color:#d63031;
+        padding:12px;
+        border-radius:10px;
+        margin-bottom:15px;
+    }
+
+    .input-group{
+        margin-bottom:18px;
+    }
+
+    .input-group label{
+        display:block;
+        margin-bottom:6px;
+        color:#444;
+        font-weight:600;
+    }
+
+    .input-group input{
+        width:100%;
+        padding:14px;
+        border:2px solid #ddd;
+        border-radius:12px;
+        font-size:15px;
+        transition:0.3s;
+    }
+
+    .input-group input:focus{
+        outline:none;
+        border-color:#667eea;
+        box-shadow:0 0 12px rgba(102,126,234,0.3);
+    }
+
+    .signup-btn{
+        width:100%;
+        padding:15px;
+        border:none;
+        border-radius:12px;
+        background:linear-gradient(45deg,#667eea,#764ba2);
+        color:white;
+        font-size:17px;
+        font-weight:bold;
+        cursor:pointer;
+        transition:0.3s;
+    }
+
+    .signup-btn:hover{
+        transform:translateY(-3px);
+        box-shadow:0 10px 20px rgba(102,126,234,0.4);
+    }
+
+    .divider{
+        text-align:center;
+        margin:25px 0;
+        color:#888;
+    }
+
+    .login-link{
+        text-align:center;
+        margin-top:20px;
+    }
+
+    .login-link a{
+        color:#667eea;
+        text-decoration:none;
+        font-weight:bold;
+    }
+
+    .login-link a:hover{
+        text-decoration:underline;
+    }
+
+    .footer-text{
+        text-align:center;
+        margin-top:20px;
+        color:#888;
+        font-size:14px;
+    }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="logo">
+        🛒
+    </div>
+
+    <h2>Create Account</h2>
+
+    <p class="subtitle">
+        Join ShopEasy and start shopping today
+    </p>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="message">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <div class="input-group">
+            <label>👤 Username</label>
+            <input type="text"
+                   name="username"
+                   placeholder="Enter username"
+                   required>
+        </div>
+
+        <div class="input-group">
+            <label>📧 Email Address</label>
+            <input type="email"
+                   name="email"
+                   placeholder="Enter email"
+                   required>
+        </div>
+
+        <div class="input-group">
+            <label>🔒 Password</label>
+            <input type="password"
+                   name="password"
+                   placeholder="Create password"
+                   required>
+        </div>
+
+        <button type="submit" class="signup-btn">
+            Create Account 🚀
+        </button>
+
+    </form>
+
+    <div class="divider">
+        ───────── OR ─────────
+    </div>
+
+    <div class="login-link">
+        Already have an account?
+        <a href="/login/">
+            Login Here
+        </a>
+    </div>
+
+    <div class="footer-text">
+        🔐 Secure Registration • Fast Checkout • Trusted Shopping
+    </div>
+
+</div>
+
+</body>
+</html>
